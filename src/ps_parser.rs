@@ -1,12 +1,26 @@
-use crate::ProcessUsage;
+use crate::process_usage;
 
-pub fn parse_ps_output(mut process: ProcessUsage, ps_output: str) {
-    let mut ps_lines = ps_output.lines();
+pub fn parse_ps_output(mut process: process_usage::ProcessUsage,
+                       ps_output: &str) {
 
-    let to_parse = lines.next().next();
+    let split = ps_output.split_whitespace();
+    let words = split.collect::<Vec<&str>>();
 
-    let mut ps_word = to_parse.words();
+    process.cpu_usage = words[2].parse::<u8>().unwrap();
+    process.mem_usage = words[3].parse::<u8>().unwrap();
+}
 
-    process.cpu_usage = to_parse.next().parse();
-    process.mem_usage = to_parse.next().parse();
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn test_parse_zeros() {
+        let mut test_process = process_usage::ProcessUsage::new(12);
+
+        parse_ps_output(test_process, "%CPU %MEM\n 0.0  0.0");
+
+        assert_eq!(test_process.pid, 12);
+        assert_eq!(test_process.cpu_usage, 0);
+        assert_eq!(test_process.mem_usage, 0);
+    }
 }

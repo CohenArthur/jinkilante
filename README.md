@@ -1,5 +1,14 @@
 # Jinkilante
 
+## What is it ?
+
 Jinkilante can watch your system and alert you when a process is consuming
-too many resources. If you have suspicions about a process, you can watch out
-for this one in particular and get reports on its activity.
+too many resources.
+
+## Requirements
+
+- Rust
+
+## How to use ?
+
+Check the following command: `jinkilante -h`

@@ -16,7 +16,7 @@ pub struct Arg {
     #[structopt(short,
                 long,
                 help = "Specific process to keep track of",
-                default_value = "0")]
+                default_value = "1")]
     process: u32,
 
     #[structopt(short,

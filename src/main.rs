@@ -1,5 +1,6 @@
-mod process_usage;
 mod exec_watcher;
+mod process_usage;
+mod ps_parser;
 
 use structopt::StructOpt;
 

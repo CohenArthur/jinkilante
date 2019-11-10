@@ -56,4 +56,14 @@ mod tests
         assert_eq!(new_p.cpu_usage, 0);
         assert_eq!(new_p.mem_usage, 0);
     }
+
+    #[test]
+    fn test_process_notify() {
+        let mut new_p = ProcessUsage::new(12);
+        new_p.strikes = 12;
+
+        new_p.notify();
+
+        assert_eq!(new_p.strikes, 0);
+    }
 }

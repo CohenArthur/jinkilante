@@ -42,5 +42,7 @@ struct Arg {
 fn main() {
     let options = Arg::from_args();
 
-    exec_watcher::exec_watcher();
+    let mut process_test = process_usage::ProcessUsage::new(6292);
+
+    exec_watcher::exec_watcher(process_test);
 }

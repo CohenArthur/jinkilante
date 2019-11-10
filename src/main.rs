@@ -4,6 +4,9 @@ mod ps_parser;
 
 use structopt::StructOpt;
 
+use process_usage::ProcessUsage;
+use exec_watcher::exec_watcher;
+
 #[derive(Debug, StructOpt)]
 #[structopt(name = "Jinkilante", about, author)]
 struct Arg {
@@ -43,7 +46,7 @@ struct Arg {
 fn main() {
     let options = Arg::from_args();
 
-    let mut process_test = process_usage::ProcessUsage::new(6292);
+    let mut process_test = ProcessUsage::new(8850);
 
-    exec_watcher::exec_watcher(process_test);
+    exec_watcher(process_test);
 }

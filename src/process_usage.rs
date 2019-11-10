@@ -1,3 +1,6 @@
+use std::error::Error;
+use std::process::Command;
+
 #[derive(Copy, Clone)]
 pub struct ProcessUsage {
     pub pid: u32,
@@ -20,7 +23,23 @@ impl ProcessUsage {
     }
 
     pub fn notify(&mut self) {
-        self.pid = 0; // FIXME: Remove
+        let _child = match Command::new("notify-send")
+                                    .args(&[
+                                          "processs",
+                                          &self.pid.to_string(),
+                                          "striked !\n",
+                                          "CPU Usage: ",
+                                          &self.cpu_usage.to_string(),
+                                          "\n",
+                                          "MEM Usage: ",
+                                          &self.mem_usage.to_string(),
+                                           ])
+                                    .spawn() {
+            Err(why) => panic!("{}", why.description()),
+            Ok(_child) => _child,
+        };
+
+        self.strikes = 0;
     }
 }
 

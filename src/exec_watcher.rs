@@ -5,7 +5,7 @@ use std::process::{Command, Stdio};
 use crate::process_usage::ProcessUsage;
 use crate::ps_parser::parse_ps_output;
 
-pub fn exec_watcher(mut process: ProcessUsage) {
+pub fn exec_watcher(process: &mut ProcessUsage) {
     let pid = process.pid.to_string();
     let child = match Command::new("ps")
                                 .args(&["-p", &pid, "-o", "%cpu,%mem"])
@@ -34,7 +34,7 @@ mod tests {
     fn test_exec_watcher_null() {
         let mut process = ProcessUsage::new(1);
 
-        exec_watcher(process);
+        exec_watcher(&mut process);
 
         assert_eq!(process.cpu_usage, 0);
         assert_eq!(process.mem_usage, 0);

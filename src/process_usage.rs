@@ -19,7 +19,7 @@ impl ProcessUsage {
         new_proc_usage
     }
 
-    pub fn kill(&mut self) {
+    pub fn notify(&mut self) {
         self.pid = 0; // FIXME: Remove
     }
 }

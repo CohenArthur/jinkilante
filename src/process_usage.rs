@@ -1,6 +1,7 @@
 #[derive(Copy, Clone)]
 pub struct ProcessUsage {
     pub pid: u32,
+    pub strikes: u32,
 
     pub cpu_usage: u8,
     pub mem_usage: u8,
@@ -10,6 +11,7 @@ impl ProcessUsage {
     pub fn new(pid: u32) -> ProcessUsage {
         let new_proc_usage = ProcessUsage {
             pid: pid,
+            strikes: 0,
             cpu_usage: 0,
             mem_usage: 0,
         };

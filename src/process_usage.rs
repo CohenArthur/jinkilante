@@ -17,7 +17,7 @@ impl ProcessUsage {
     }
 
     fn kill(&mut self) {
-        self.pid = 0; // Remove
+        self.pid = 0; // FIXME: Remove
     }
 }
 

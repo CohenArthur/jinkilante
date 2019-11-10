@@ -10,7 +10,7 @@ use process_usage::ProcessUsage;
 use exec_watcher::exec_watcher;
 use striker::strike;
 
-#[derive(Debug, StructOpt, Copy, Clone)]
+#[derive(Debug, StructOpt, Clone)]
 #[structopt(name = "Jinkilante", about, author)]
 pub struct Arg {
     #[structopt(short,
@@ -44,6 +44,12 @@ process to get striked",
 process to get striked",
                 default_value = "90")]
     mem: u8,
+
+    #[structopt(short,
+                long,
+                help = "Binary you want to use to get system notifications",
+                default_value = "echo")]
+    notifier: String,
 }
 
 fn main() {
@@ -53,7 +59,7 @@ fn main() {
 
     loop {
         exec_watcher(&mut process_test);
-        strike(options, &mut process_test);
+        strike(&options, &mut process_test);
         thread::sleep(wait_time);
     }
 }

@@ -48,5 +48,5 @@ fn main() {
 
     let mut process_test = ProcessUsage::new(8850);
 
-    exec_watcher(process_test);
+    exec_watcher(&mut process_test);
 }

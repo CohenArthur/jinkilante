@@ -4,6 +4,7 @@ mod ps_parser;
 mod striker;
 
 use structopt::StructOpt;
+use std::{thread, time};
 
 use process_usage::ProcessUsage;
 use exec_watcher::exec_watcher;
@@ -47,11 +48,12 @@ pub struct Arg {
 
 fn main() {
     let options = Arg::from_args();
-
     let mut process_test = ProcessUsage::new(options.process);
+    let wait_time = time::Duration::new(5, 0);
 
     loop {
         exec_watcher(&mut process_test);
         strike(options, &mut process_test);
+        thread::sleep(wait_time);
     }
 }

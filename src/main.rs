@@ -9,7 +9,7 @@ use exec_watcher::exec_watcher;
 
 #[derive(Debug, StructOpt)]
 #[structopt(name = "Jinkilante", about, author)]
-struct Arg {
+pub struct Arg {
     #[structopt(short,
                 long,
                 help = "Specific process to keep track of",

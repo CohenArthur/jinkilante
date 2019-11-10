@@ -48,7 +48,7 @@ pub struct Arg {
 fn main() {
     let options = Arg::from_args();
 
-    let mut process_test = ProcessUsage::new(8850);
+    let mut process_test = ProcessUsage::new(options.process);
 
     exec_watcher(&mut process_test);
     strike(options, &mut process_test);

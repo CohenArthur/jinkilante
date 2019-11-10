@@ -22,14 +22,14 @@ impl ProcessUsage {
         new_proc_usage
     }
 
-    pub fn notify(&mut self) {
+    pub fn notify(&mut self, notify_bin: String) {
         let format_string = format!(
             "Process {} striked !\nCPU Usage: {}\nMEM Usage: {}",
             &self.pid.to_string(),
             &self.cpu_usage.to_string(),
             &self.mem_usage.to_string(),
             );
-        let _child = match Command::new("notify-send")
+        let _child = match Command::new(notify_bin)
                                     .args(&[format_string])
                                     .spawn() {
             Err(why) => panic!("{}", why.description()),
@@ -59,7 +59,7 @@ mod tests
         let mut new_p = ProcessUsage::new(12);
         new_p.strikes = 12;
 
-        new_p.notify();
+        new_p.notify("echo".to_string());
 
         assert_eq!(new_p.strikes, 0);
     }

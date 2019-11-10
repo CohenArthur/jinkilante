@@ -1,3 +1,4 @@
+#[derive(Copy, Clone)]
 pub struct ProcessUsage {
     pub pid: u32,
 

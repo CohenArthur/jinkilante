@@ -20,7 +20,7 @@ pub fn exec_watcher(process: &mut ProcessUsage) {
     match child.stdout.unwrap().read_to_string(&mut output) {
         Err(why) => panic!("couldn't read ps stdout: {}",
                            why.description()),
-        Ok(output) => print!("{}", output),
+        Ok(_) => (),
     }
 
     parse_ps_output(process, &output);

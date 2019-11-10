@@ -1,10 +1,10 @@
 use crate::Arg;
 use crate::process_usage::ProcessUsage;
 
-pub fn strike(args: Arg,
+pub fn strike(args: &Arg,
               process: &mut ProcessUsage) {
-    if process.strikes > args.strikes {
-        process.notify();
+    if process.strikes >= args.strikes {
+        process.notify(args.notifier.clone());
     }
 
     if process.cpu_usage > args.cpu ||
@@ -25,11 +25,12 @@ mod tests {
             strikes: 10,
             timeout: 256,
             process: 1,
+            notifier: "echo".to_string(),
         };
 
         let mut process = ProcessUsage::new(options.process);
 
-        strike(options, &mut process);
+        strike(&options, &mut process);
 
         assert_eq!(process.strikes, 0);
     }
@@ -42,6 +43,7 @@ mod tests {
             strikes: 10,
             timeout: 256,
             process: 1,
+            notifier: "echo".to_string(),
         };
 
         let mut process = ProcessUsage::new(options.process);
@@ -49,7 +51,7 @@ mod tests {
         process.cpu_usage = 80;
         process.mem_usage = 80;
 
-        strike(options, &mut process);
+        strike(&options, &mut process);
 
         assert_eq!(process.strikes, 1);
     }

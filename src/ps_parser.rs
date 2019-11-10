@@ -5,8 +5,8 @@ pub fn parse_ps_output(mut process: ProcessUsage, ps_output: &str) {
     let split = ps_output.split_whitespace();
     let words = split.collect::<Vec<&str>>();
 
-    process.cpu_usage = words[2].parse::<u8>().unwrap();
-    process.mem_usage = words[3].parse::<u8>().unwrap();
+    process.cpu_usage = words[2].parse::<f32>().unwrap() as u8;
+    process.mem_usage = words[3].parse::<f32>().unwrap() as u8;
 }
 
 #[cfg(test)]

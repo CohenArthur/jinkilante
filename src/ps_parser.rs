@@ -13,6 +13,7 @@ pub fn parse_ps_output(mut process: ProcessUsage, ps_output: &str) {
 mod tests {
     use super::*;
 
+    #[test]
     fn test_parse_zeros() {
         let mut test_process = ProcessUsage::new(12);
 

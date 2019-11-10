@@ -4,11 +4,8 @@ use std::process::{Command, Stdio};
 
 use crate::process_usage::ProcessUsage;
 
-static PANGRAM: &'static str =
-"hello\n";
-
 pub fn exec_watcher(mut process: ProcessUsage) {
-    let pid = process.get_pid().to_string();
+    let pid = process.pid.to_string();
     let process = match Command::new("ps")
                                 .args(&["-p", &pid, "-o", "%cpu,%mem"])
                                 .stdin(Stdio::piped())

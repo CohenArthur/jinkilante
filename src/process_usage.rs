@@ -1,8 +1,8 @@
 pub struct ProcessUsage {
-    pid: u32,
+    pub pid: u32,
 
-    cpu_usage: u8,
-    mem_usage: u8,
+    pub cpu_usage: u8,
+    pub mem_usage: u8,
 }
 
 impl ProcessUsage {
@@ -18,10 +18,6 @@ impl ProcessUsage {
 
     pub fn kill(&mut self) {
         self.pid = 0; // FIXME: Remove
-    }
-
-    pub fn get_pid(&self) -> u32 {
-        self.pid
     }
 }
 

@@ -1,4 +1,4 @@
-struct ProcessUsage {
+pub struct ProcessUsage {
     pid: u32,
 
     cpu_usage: u8,
@@ -6,7 +6,7 @@ struct ProcessUsage {
 }
 
 impl ProcessUsage {
-    fn new(pid: u32) -> ProcessUsage {
+    pub fn new(pid: u32) -> ProcessUsage {
         let new_proc_usage = ProcessUsage {
             pid: pid,
             cpu_usage: 0,
@@ -16,8 +16,12 @@ impl ProcessUsage {
         new_proc_usage
     }
 
-    fn kill(&mut self) {
+    pub fn kill(&mut self) {
         self.pid = 0; // FIXME: Remove
+    }
+
+    pub fn get_pid(&self) -> u32 {
+        self.pid
     }
 }
 

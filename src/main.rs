@@ -34,14 +34,14 @@ pub struct Arg {
     #[structopt(short,
                 long,
                 help = "Percentage of CPU usage required for a
-                        process to get striked",
+process to get striked",
                 default_value = "90")]
     cpu: u8,
 
     #[structopt(short,
                 long,
                 help = "Percentage of RAM usage required for a
-                        process to get striked",
+process to get striked",
                 default_value = "90")]
     mem: u8,
 }

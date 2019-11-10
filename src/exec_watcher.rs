@@ -30,6 +30,7 @@ pub fn exec_watcher(mut process: ProcessUsage) {
 mod tests {
     use super::*;
 
+    #[test]
     fn test_exec_watcher_null() {
         let mut process = ProcessUsage::new(1);
 

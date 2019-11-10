@@ -9,7 +9,7 @@ use process_usage::ProcessUsage;
 use exec_watcher::exec_watcher;
 use striker::strike;
 
-#[derive(Debug, StructOpt)]
+#[derive(Debug, StructOpt, Copy, Clone)]
 #[structopt(name = "Jinkilante", about, author)]
 pub struct Arg {
     #[structopt(short,
@@ -50,6 +50,8 @@ fn main() {
 
     let mut process_test = ProcessUsage::new(options.process);
 
-    exec_watcher(&mut process_test);
-    strike(options, &mut process_test);
+    loop {
+        exec_watcher(&mut process_test);
+        strike(options, &mut process_test);
+    }
 }

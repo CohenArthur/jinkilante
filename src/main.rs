@@ -1,11 +1,13 @@
 mod exec_watcher;
 mod process_usage;
 mod ps_parser;
+mod striker;
 
 use structopt::StructOpt;
 
 use process_usage::ProcessUsage;
 use exec_watcher::exec_watcher;
+use striker::strike;
 
 #[derive(Debug, StructOpt)]
 #[structopt(name = "Jinkilante", about, author)]
@@ -49,4 +51,5 @@ fn main() {
     let mut process_test = ProcessUsage::new(8850);
 
     exec_watcher(&mut process_test);
+    strike(options, &mut process_test);
 }

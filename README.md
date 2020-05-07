@@ -11,12 +11,7 @@ too many resources.
 
 ## Installation
 
-Run the following command: `cargo build --release`
-
-Add the target directory to your path: `export PATH=$PATH:./target/release`
-
-For a permanent export, add the previous command to your configuration files,
-such as `~/.bashrc` or `~/.zshrc`.
+Run the following command: `cargo install --git https://github.com/cohenarthur/jinkilante`
 
 ## How to use ?
 
